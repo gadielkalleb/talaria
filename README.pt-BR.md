@@ -1,9 +1,5 @@
 [English](README.md)
 
-<p align="center">
-  <img src="assets/mark.png" alt="Selo Talaria" width="160" />
-</p>
-
 # Talaria ☤
 
 ![Talaria — skill de evasão Hermes para Playwright](assets/hero.png)
@@ -32,6 +28,8 @@ Só automatize sites que você tem autorização para acessar.
 A skill fica em [`skills/talaria/`](skills/talaria/). Compatível com Cursor, Codex, Hermes, OpenClaw e [agentskills.io](https://agentskills.io).
 
 ### OpenClaw / ClawHub
+
+**ClawHub:** [clawhub.ai/gadielkalleb/talaria](https://clawhub.ai/gadielkalleb/talaria)
 
 ```bash
 openclaw skills search talaria
