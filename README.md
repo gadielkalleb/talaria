@@ -8,7 +8,7 @@
 
 ![Talaria — Hermes evasion skill for Playwright](assets/hero.png)
 
-Hermes evasion skill for Playwright. The messenger crosses the gate; the browser crosses the WAF. **Not a CAPTCHA solver.**
+Playwright stealth evasion skill for agents. The messenger crosses the gate; the browser crosses the WAF. **Not a CAPTCHA solver.**
 
 Only automate sites you are authorized to access.
 
@@ -29,13 +29,56 @@ Only automate sites you are authorized to access.
 
 ## Install
 
-The repo **is** the skill. Copy this directory, or:
+The skill lives in [`skills/talaria/`](skills/talaria/). Compatible with Cursor, Codex, Hermes, OpenClaw, and [agentskills.io](https://agentskills.io).
+
+### OpenClaw / ClawHub
 
 ```bash
-# Hermes (default)
-bash install.sh ~/.hermes/skills/talaria
+openclaw skills search talaria
+openclaw skills install @gadielkalleb/talaria
 
-# Cursor / Codex
+# or install from GitHub
+openclaw skills install github:gadielkalleb/talaria/skills/talaria
+```
+
+Publish updates (maintainers):
+
+```bash
+cd skills/talaria
+clawhub login
+clawhub skill publish . \
+  --slug talaria \
+  --name "Talaria" \
+  --categories automation,research \
+  --topics "playwright,stealth,browser,waf"
+```
+
+### Hermes Agent
+
+```bash
+# ClawHub (after publish)
+hermes skills search talaria --source clawhub
+hermes skills install clawhub/talaria
+
+# GitHub tap
+hermes skills tap add gadielkalleb/talaria
+hermes skills install gadielkalleb/talaria/talaria
+
+# Direct install (full repo path)
+hermes skills install gadielkalleb/talaria/skills/talaria
+```
+
+### skills.sh / npx skills
+
+```bash
+npx skills add gadielkalleb/talaria --skill talaria
+npx skills add gadielkalleb/talaria --skill talaria --agent hermes
+```
+
+### Local copy (Hermes / Cursor / Codex)
+
+```bash
+bash install.sh ~/.hermes/skills/talaria
 bash install.sh ~/.cursor/skills/talaria
 bash install.sh ~/.codex/skills/talaria
 ```
@@ -43,17 +86,17 @@ bash install.sh ~/.codex/skills/talaria
 Then, in the skill directory:
 
 ```bash
-npm run setup
+cd skills/talaria && npm run setup
 ```
 
-Optional proxy: copy `.env.example` to `.env`.
+Optional proxy: copy `skills/talaria/.env.example` to `.env`.
 
-Agents resolve `$SKILL_DIR` as the folder that contains [`SKILL.md`](SKILL.md) and run from there. Compatible with Cursor, Codex, Hermes, and [agentskills.io](https://agentskills.io).
+Agents resolve `$SKILL_DIR` as the folder that contains [`SKILL.md`](skills/talaria/SKILL.md) and run from there.
 
 ## CLI
 
 ```bash
-node scripts/cli.js --url https://example.com --screenshot out.png --html out.html --json
+node skills/talaria/scripts/cli.js --url https://example.com --screenshot out.png --html out.html --json
 ```
 
 | Flag | Role |
@@ -88,7 +131,7 @@ Headless uses full Chromium (`channel: 'chromium'`), not Playwright 1.49+ `chrom
 ## Tests
 
 ```bash
-npm test
+cd skills/talaria && npm test
 ```
 
 - stealth signals on `about:blank` vs vanilla Playwright

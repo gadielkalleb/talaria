@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SKILL_SRC="$(cd "$(dirname "$0")" && pwd)"
+REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
+SKILL_SRC="$REPO_ROOT/skills/talaria"
 DEST="${1:-$HOME/.hermes/skills/talaria}"
+
+if [[ ! -f "$SKILL_SRC/SKILL.md" ]]; then
+  echo "Error: skill not found at $SKILL_SRC" >&2
+  exit 1
+fi
 
 mkdir -p "$(dirname "$DEST")"
 rm -rf "$DEST"
@@ -12,7 +18,6 @@ tar -C "$SKILL_SRC" \
   --exclude=node_modules \
   --exclude='*.tgz' \
   --exclude='test/.tmp' \
-  --exclude=.git \
   -cf - . | tar -C "$DEST" -xf -
 
 cd "$DEST"

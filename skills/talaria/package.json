@@ -1,7 +1,7 @@
 {
   "name": "talaria",
   "version": "1.0.0",
-  "description": "Talaria — Hermes evasion skill. Playwright Stealth wrapper for agents (Cursor, Codex, Hermes).",
+  "description": "Talaria — Playwright stealth evasion skill for agents (Hermes, OpenClaw, Cursor, Codex).",
   "type": "module",
   "main": "scripts/index.js",
   "bin": {
@@ -9,13 +9,8 @@
   },
   "files": [
     "SKILL.md",
-    "README.md",
-    "README.pt-BR.md",
-    "LICENSE",
-    "assets",
     "scripts",
     "test",
-    "install.sh",
     ".env.example"
   ],
   "scripts": {
@@ -23,11 +18,7 @@
     "start": "node scripts/cli.js",
     "cli": "node scripts/cli.js",
     "test": "node --test --test-timeout=90000 test/*.e2e.test.js",
-    "postinstall": "npx playwright install chromium",
-    "pack:skill": "npm pack --pack-destination .",
-    "install:hermes": "bash install.sh \"$HOME/.hermes/skills/talaria\"",
-    "install:cursor": "bash install.sh \"$HOME/.cursor/skills/talaria\"",
-    "install:codex": "bash install.sh \"$HOME/.codex/skills/talaria\""
+    "postinstall": "npx playwright install chromium"
   },
   "engines": {
     "node": ">=18"

@@ -1,9 +1,28 @@
 ---
 name: talaria
 description: Playwright stealth evasion wrapper (playwright-extra + puppeteer-extra-plugin-stealth). Reduces basic bot detection and WAF-triggered challenges — not a CAPTCHA solver. Use when automating browsers, scraping, bot detection, playwright stealth, WAF evasion, or when Playwright is flagged as a bot.
+version: 1.0.0
 metadata:
   hermes:
     tags: [playwright, stealth, browser, evasion, talaria, waf]
+  openclaw:
+    requires:
+      bins: [node, npm]
+    envVars:
+      - name: PROXY_SERVER
+        required: false
+        description: Optional HTTP proxy server
+      - name: PROXY_USERNAME
+        required: false
+        description: Optional proxy username
+      - name: PROXY_PASSWORD
+        required: false
+        description: Optional proxy password
+      - name: HEADLESS
+        required: false
+        description: Set to "false" for headed browser
+    emoji: "☤"
+    homepage: https://github.com/gadielkalleb/talaria
 ---
 
 # Talaria
@@ -35,10 +54,11 @@ Before any command, resolve the directory that contains this `SKILL.md` and use 
 
 Common locations:
 
-- This repo / clone (skill is the repo root)
+- Hub install: `skills/talaria/` inside the cloned repo
 - Hermes: `~/.hermes/skills/talaria`
 - Cursor: `~/.cursor/skills/talaria`
 - Codex: `~/.codex/skills/talaria`
+- OpenClaw: skill bundle install directory
 
 Do not copy scripts into the user's project. Run and import from `$SKILL_DIR`.
 

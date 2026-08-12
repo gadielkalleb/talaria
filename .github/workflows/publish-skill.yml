@@ -1,0 +1,23 @@
+name: Publish skill to ClawHub
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Preview without publishing
+        type: boolean
+        default: true
+  push:
+    branches: [main]
+    paths:
+      - 'skills/talaria/**'
+
+jobs:
+  publish:
+    uses: openclaw/clawhub/.github/workflows/skill-publish.yml@main
+    with:
+      owner: gadielkalleb
+      skill_path: skills/talaria
+      dry_run: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+    secrets:
+      clawhub_token: ${{ secrets.CLAWHUB_TOKEN }}
