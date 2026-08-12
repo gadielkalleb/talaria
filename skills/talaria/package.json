@@ -11,7 +11,7 @@
     "SKILL.md",
     "scripts",
     "test",
-    ".env.example"
+    "env.example"
   ],
   "scripts": {
     "setup": "npm install && npx playwright install chromium",

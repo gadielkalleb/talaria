@@ -32,11 +32,21 @@ The skill lives in [`skills/talaria/`](skills/talaria/). Compatible with Cursor,
 **ClawHub:** [clawhub.ai/gadielkalleb/talaria](https://clawhub.ai/gadielkalleb/talaria)
 
 ```bash
-openclaw skills search talaria
+# ClawHub CLI
+npx clawhub install talaria
+
+# OpenClaw
 openclaw skills install @gadielkalleb/talaria
 
 # or install from GitHub
 openclaw skills install github:gadielkalleb/talaria/skills/talaria
+```
+
+After install, in the skill directory:
+
+```bash
+npm run setup
+node scripts/cli.js --url https://example.com --json
 ```
 
 Publish updates (maintainers):
@@ -54,9 +64,8 @@ clawhub skill publish . \
 ### Hermes Agent
 
 ```bash
-# ClawHub (after publish)
-hermes skills search talaria --source clawhub
-hermes skills install clawhub/talaria
+# ClawHub (install by slug — search may not list it yet)
+hermes skills install clawhub/talaria -y
 
 # GitHub tap
 hermes skills tap add gadielkalleb/talaria
@@ -65,6 +74,8 @@ hermes skills install gadielkalleb/talaria/talaria
 # Direct install (full repo path)
 hermes skills install gadielkalleb/talaria/skills/talaria
 ```
+
+Then: `cd ~/.hermes/skills/talaria && npm run setup`
 
 ### skills.sh / npx skills
 
@@ -87,7 +98,7 @@ Then, in the skill directory:
 cd skills/talaria && npm run setup
 ```
 
-Optional proxy: copy `skills/talaria/.env.example` to `.env`.
+Optional proxy: copy `skills/talaria/env.example` to `.env`, then export the vars (or pass `--proxy`).
 
 Agents resolve `$SKILL_DIR` as the folder that contains [`SKILL.md`](skills/talaria/SKILL.md) and run from there.
 
@@ -128,9 +139,13 @@ Headless uses full Chromium (`channel: 'chromium'`), not Playwright 1.49+ `chrom
 
 ## Tests
 
+From a full git clone (hub installs omit `test/`):
+
 ```bash
 cd skills/talaria && npm test
 ```
+
+After a ClawHub/Hermes install, smoke-check instead: `node scripts/cli.js --url https://example.com --json`.
 
 - stealth signals on `about:blank` vs vanilla Playwright
 - WebDriver/Chrome checks on `https://bot.sannysoft.com/` (needs network)

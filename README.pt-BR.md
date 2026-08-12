@@ -32,11 +32,21 @@ A skill fica em [`skills/talaria/`](skills/talaria/). Compatível com Cursor, Co
 **ClawHub:** [clawhub.ai/gadielkalleb/talaria](https://clawhub.ai/gadielkalleb/talaria)
 
 ```bash
-openclaw skills search talaria
+# ClawHub CLI
+npx clawhub install talaria
+
+# OpenClaw
 openclaw skills install @gadielkalleb/talaria
 
 # ou instalar do GitHub
 openclaw skills install github:gadielkalleb/talaria/skills/talaria
+```
+
+Depois de instalar, na pasta da skill:
+
+```bash
+npm run setup
+node scripts/cli.js --url https://example.com --json
 ```
 
 Publicar atualizações (maintainers):
@@ -54,9 +64,8 @@ clawhub skill publish . \
 ### Hermes Agent
 
 ```bash
-# ClawHub (após publicar)
-hermes skills search talaria --source clawhub
-hermes skills install clawhub/talaria
+# ClawHub (instalar pelo slug — a busca ainda pode não listar)
+hermes skills install clawhub/talaria -y
 
 # Tap GitHub
 hermes skills tap add gadielkalleb/talaria
@@ -65,6 +74,8 @@ hermes skills install gadielkalleb/talaria/talaria
 # Instalação direta (path completo no repo)
 hermes skills install gadielkalleb/talaria/skills/talaria
 ```
+
+Depois: `cd ~/.hermes/skills/talaria && npm run setup`
 
 ### skills.sh / npx skills
 
@@ -87,7 +98,7 @@ Depois, na pasta da skill:
 cd skills/talaria && npm run setup
 ```
 
-Proxy opcional: copie `skills/talaria/.env.example` para `.env`.
+Proxy opcional: copie `skills/talaria/env.example` para `.env` e exporte as vars (ou use `--proxy`).
 
 Agentes resolvem `$SKILL_DIR` como a pasta que contém [`SKILL.md`](skills/talaria/SKILL.md) e executam a partir dela.
 
@@ -128,9 +139,13 @@ No headless usa Chromium completo (`channel: 'chromium'`), não o `chrome-headle
 
 ## Testes
 
+Em um clone completo do git (instalações via hub não incluem `test/`):
+
 ```bash
 cd skills/talaria && npm test
 ```
+
+Após instalar pelo ClawHub/Hermes, use smoke-check: `node scripts/cli.js --url https://example.com --json`.
 
 - sinais stealth em `about:blank` vs Playwright cru
 - checks WebDriver/Chrome em `https://bot.sannysoft.com/` (precisa de internet)

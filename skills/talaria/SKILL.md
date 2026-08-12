@@ -54,11 +54,11 @@ Before any command, resolve the directory that contains this `SKILL.md` and use 
 
 Common locations:
 
-- Hub install: `skills/talaria/` inside the cloned repo
-- Hermes: `~/.hermes/skills/talaria`
+- ClawHub / OpenClaw: skill bundle install directory (often `skills/talaria/`)
+- Hermes (ClawHub): `~/.hermes/skills/talaria`
 - Cursor: `~/.cursor/skills/talaria`
 - Codex: `~/.codex/skills/talaria`
-- OpenClaw: skill bundle install directory
+- Git clone: `skills/talaria/` inside this repo
 
 Do not copy scripts into the user's project. Run and import from `$SKILL_DIR`.
 
@@ -68,9 +68,9 @@ Do not copy scripts into the user's project. Run and import from `$SKILL_DIR`.
 cd "$SKILL_DIR" && npm run setup
 ```
 
-If Chromium is missing later: `cd "$SKILL_DIR" && npx playwright install chromium`
+Downloads npm deps and Chromium (can be large). If Chromium is missing later: `cd "$SKILL_DIR" && npx playwright install chromium`
 
-Optional proxy: copy `$SKILL_DIR/.env.example` to `$SKILL_DIR/.env` (`PROXY_SERVER`, `PROXY_USERNAME`, `PROXY_PASSWORD`, `HEADLESS`).
+Optional proxy: copy `$SKILL_DIR/env.example` to `$SKILL_DIR/.env`, then export the vars into the process env (`PROXY_SERVER`, `PROXY_USERNAME`, `PROXY_PASSWORD`, `HEADLESS`). Or pass `--proxy` / `proxy:` in the API.
 
 ## When to use
 
@@ -121,7 +121,7 @@ Options: `headless`, `slowMo`, `proxy` (string or `{ server, username, password 
 2. `cd "$SKILL_DIR" && npm run setup` if `node_modules` is missing
 3. Import `launchStealthBrowser` from `$SKILL_DIR/scripts/index.js` — never `import { chromium } from 'playwright'` for the target browser
 4. If the IP is burned, set a residential proxy in the skill env
-5. Verify: `cd "$SKILL_DIR" && npm test`
+5. Smoke-check the CLI (below)
 
 ## If a challenge is still on the page
 
@@ -132,11 +132,13 @@ Options: `headless`, `slowMo`, `proxy` (string or `{ server, username, password 
 
 ## Verify
 
+Hub installs (ClawHub / Hermes) do not ship `test/`. Smoke-check with the CLI:
+
 ```bash
-cd "$SKILL_DIR" && npm test
+node "$SKILL_DIR/scripts/cli.js" --url https://example.com --json
 ```
 
-Covers stealth signals on `about:blank`, contrast with vanilla Playwright, `bot.sannysoft.com`, and the CLI.
+Expect JSON with `url` and `title`. From a full git clone that includes `test/`, maintainers can also run `cd "$SKILL_DIR" && npm test` (stealth signals, sannysoft, CLI e2e).
 
 ## Credits
 
