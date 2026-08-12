@@ -46,7 +46,7 @@ Self-contained skill: instructions + code in `$SKILL_DIR`. **Do not** use vanill
 - Guarantee bypass of Cloudflare / DataDome / PerimeterX-class stacks
 - Integrate paid solvers (2Captcha, Bright Data Web Unlocker, etc.)
 
-Only automate sites the user is authorized to access.
+Only automate websites the user authorized access to.
 
 ## Path resolution
 

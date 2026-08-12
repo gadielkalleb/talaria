@@ -6,7 +6,7 @@
 
 Skill de evasão Playwright para agentes. O mensageiro atravessa o portal; o browser atravessa o WAF. **Não é um solver de CAPTCHA.**
 
-Só automatize sites que você tem autorização para acessar.
+Só automatize websites aos quais você autorizou acesso.
 
 ## O que faz
 

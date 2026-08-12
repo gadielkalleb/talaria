@@ -6,7 +6,7 @@
 
 Playwright stealth evasion skill for agents. The messenger crosses the gate; the browser crosses the WAF. **Not a CAPTCHA solver.**
 
-Only automate sites you are authorized to access.
+Only automate websites you authorized access to.
 
 ## What it does
 
