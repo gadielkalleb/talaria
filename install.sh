@@ -21,9 +21,8 @@ tar -C "$SKILL_SRC" \
   -cf - . | tar -C "$DEST" -xf -
 
 cd "$DEST"
-npm install
+npm run setup
 
 echo "Skill installed at: $DEST"
-echo "Setup (if needed): cd \"$DEST\" && npm run setup"
 echo "Smoke-check: node \"$DEST/scripts/cli.js\" --url https://example.com --json"
 echo "Full tests (git clone): cd \"$DEST\" && npm test"

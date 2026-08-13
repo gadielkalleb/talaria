@@ -6,7 +6,8 @@
 
 Skill de evasão Playwright para agentes. O mensageiro atravessa o portal; o browser atravessa o WAF. **Não é um solver de CAPTCHA.**
 
-Só automatize websites aos quais você autorizou acesso.
+> [!WARNING]
+> Use o Talaria somente em websites que você controla ou tem autorização explícita para testar ou automatizar. Não use para contornar controles de acesso, autenticação, CAPTCHAs, paywalls, restrições de conta ou políticas do site. A skill é opt-in para uma necessidade explícita de stealth — não para navegação ou scraping genéricos.
 
 ## O que faz
 
@@ -48,6 +49,8 @@ Depois de instalar, na pasta da skill:
 npm run setup
 node scripts/cli.js --url https://example.com --json
 ```
+
+`npm run setup` instala as versões exatas do `package-lock.json` com scripts de lifecycle das dependências desativados e depois baixa explicitamente o Chromium da CDN oficial do Playwright.
 
 Publicar atualizações (maintainers):
 

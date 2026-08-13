@@ -6,7 +6,8 @@
 
 Playwright stealth evasion skill for agents. The messenger crosses the gate; the browser crosses the WAF. **Not a CAPTCHA solver.**
 
-Only automate websites you authorized access to.
+> [!WARNING]
+> Use Talaria only on websites you own or are explicitly authorized to test or automate. Do not use it to bypass access controls, authentication, CAPTCHAs, paywalls, account restrictions, or website policies. It is opt-in for an explicit stealth requirement—not generic browsing or scraping.
 
 ## What it does
 
@@ -48,6 +49,8 @@ After install, in the skill directory:
 npm run setup
 node scripts/cli.js --url https://example.com --json
 ```
+
+`npm run setup` installs the exact versions in `package-lock.json` with dependency lifecycle scripts disabled, then explicitly downloads Chromium from Playwright's official CDN.
 
 Publish updates (maintainers):
 
